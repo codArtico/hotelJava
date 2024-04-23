@@ -31,14 +31,61 @@ public class Aplicacao {
 	
 	public static void verQuartos(Hotel hotel) {
 		hotel.verificarDisponiveis();
-		
+		System.out.println(" ");
+		System.out.println(" ");
+	}
+	
+	public static void checkIn(Hotel hotel, int numeroQuarto) {
+		Quarto[] quartos = hotel.getQuartos();
+
+	    if (numeroQuarto >= 0 && numeroQuarto < quartos.length) {
+	        Quarto quartoSelecionado = quartos[numeroQuarto];
+
+	        if (!quartoSelecionado.isCheck() && !quartoSelecionado.isDisponivel()) {
+	            quartoSelecionado.setCheck(true); // Atualiza a disponibilidade do quarto
+	            System.out.println("Check-in Realizado!");
+	        }
+	        
+	        else if (quartoSelecionado.isCheck() && !quartoSelecionado.isDisponivel()) {
+	            System.out.println("Quarto já tem gente!");
+	        }
+	        
+	        else {
+	        	System.out.println("Quarto não tem reserva agendada!");
+	        }
+	        
+	    }
+	    else {
+	        System.out.println("Número de quarto inválido.");
+	    }
+	}
+	
+	public static void checkOut(Hotel hotel, int numeroQuarto) {
+		Quarto[] quartos = hotel.getQuartos();
+
+	    if (numeroQuarto >= 0 && numeroQuarto < quartos.length) {
+	        Quarto quartoSelecionado = quartos[numeroQuarto];
+
+	        if (quartoSelecionado.isCheck()) {
+	            quartoSelecionado.setCheck(false); // Indica que não há ninguém no quarto;
+	            quartoSelecionado.setDisponivel(true); // Deixa o quarto disponível
+	            System.out.println("Quarto liberado!");
+	        }
+	        
+	        else {
+	            System.out.println("Quarto não tinha ninguém!");
+	        }
+	        
+	    }
+	    else {
+	        System.out.println("Número de quarto inválido.");
+	    }
 	}
 
 	
 	// Função que controla as funcionalidades do programa
 	
-	public static int menuPrincipal(Hotel hotel) {
-		Scanner sc = new Scanner(System.in);
+	public static int menuPrincipal(Hotel hotel, Scanner sc) {
 		System.out.println("Seja bem vindo ao nosso sistema de reserva para hotel!");
 		System.out.println("Escolha uma opcao: ");
 		System.out.println(" ");
@@ -73,12 +120,29 @@ public class Aplicacao {
 			verQuartos(hotel);
 			break;
 			
+		case 3:
+			int numCheckIn;
+			System.out.println("Digite o número do quarto que deseja fazer Check-In: ");
+			numCheckIn = sc.nextInt();
+			checkIn(hotel,numCheckIn);
+			break;
+			
+		case 4:
+			int numCheckOut;
+			System.out.println("Digite o número do quarto que deseja fazer CheckOut: ");
+			numCheckOut = sc.nextInt();
+			checkOut(hotel,numCheckOut);
+			break;
+			
+		case 5:
+			System.out.println("Obrigado por utilizar nosso programa!");
+			break;
+			
 		default:
 			break;
+			
 		}
-		
-		
-		sc.close();
+
 		return opcao;
 		
 	
@@ -86,10 +150,13 @@ public class Aplicacao {
 	
 	public static void main(String []args) {
 		
-		Hotel hotel = new Hotel();
+		Hotel hotel = new Hotel("Boa Vista",10);
+		int chave;
+		Scanner sc = new Scanner(System.in);
 		do {
-			menuPrincipal(hotel);
 			
-		} while(menuPrincipal(hotel) != 5);
+		chave = menuPrincipal(hotel,sc);
+		
+		} while (chave != 5);
 	}
 }

@@ -12,6 +12,10 @@ public class Hotel {
 	Hotel(String nome, int quantQuartos){
 		this.nome = nome;
 		this.quartos = new Quarto[quantQuartos];
+		for (int i =0; i<quantQuartos; i++) {
+			quartos[i] = new Quarto(i,true,false);
+			
+		}
 	}
 
 	public String getNome() {
@@ -31,17 +35,18 @@ public class Hotel {
 	}
 
 	public void verificarDisponiveis() {
-		
+		boolean chave = false;
 		for (int i = 0; i<quartos.length; i++) {
-			boolean chave = false;
+			
 			if(quartos[i].isDisponivel()) {
 				chave = true;
 				System.out.print(" • " + quartos[i].getNumQuarto() + " • ");
 			}
 			
-			if (!chave) {
-				System.out.println("Não há quartos disponiveis neste hotel!");
-			}
+		}
+		
+		if (!chave) {
+			System.out.println("Não há quartos disponiveis neste hotel!");
 		}
 	}
 	

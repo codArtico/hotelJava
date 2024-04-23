@@ -1,16 +1,16 @@
 package hotelJava;
 
 public class Quarto {
-	String numQuarto;
+	int numQuarto;
 	private boolean disponivel;
 	private boolean check;
 	
 	// Data[] datasAlugadas;
 	
-	public String getNumQuarto() {
+	public int getNumQuarto() {
 		return numQuarto;
 	}
-	public void setNumQuarto(String numQuarto) {
+	public void setNumQuarto(int numQuarto) {
 		this.numQuarto = numQuarto;
 	}
 	
@@ -27,9 +27,14 @@ public class Quarto {
 		this.check = check;
 	}
 	
-	@Override
-	public String toString() {
-		return "Quarto [disponivel=" + disponivel + ", check=" + check + "]";
+	public Quarto() {
+		
+	}
+	
+	public Quarto(int numQuarto, boolean disponivel, boolean check) {
+		this.numQuarto = numQuarto;
+		this.disponivel = disponivel;
+		this.check = check;
 	}
 	
 	
