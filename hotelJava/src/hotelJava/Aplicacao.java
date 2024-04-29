@@ -2,21 +2,59 @@ package hotelJava;
 
 import java.util.Scanner;
 
+import entidades.Usuario;
+
 
 public class Aplicacao {
 	
 	public static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String []args) {
-		
-		Hotel hotel = new Hotel("Boa Vista",10);
+		Scanner input = new Scanner(System.in);
+        Usuario[] arrayUsuarios = new Usuario[1];
+        int quantidadeUsuarios = 0;
 
-		int chave;
-		do {
-			
-		chave = menuPrincipal(hotel,sc);
+		Hotel hotel = new Hotel("Boa Vista",10);
 		
-		} while (chave != 4);
+		int opcao = 0;
+        do {
+            //limparTela(); + um pause.
+            System.out.println("Menu:");
+            System.out.println("1. Criar nova conta");
+            System.out.println("2. Fazer login");
+            System.out.println("0. Sair");
+            System.out.println("Escolha uma opção >> ");
+
+            opcao = input.nextInt();
+            switch (opcao) {
+                case 0:
+                    limparTela();
+                    System.out.println("Encerrando...");
+                    break;
+                case 1:
+                    limparTela();
+                    arrayUsuarios = Usuario.cadastrarUsuario(arrayUsuarios, quantidadeUsuarios);
+                    System.out.println(arrayUsuarios[quantidadeUsuarios].toString());
+                    break;
+                case 2:
+                    limparTela();
+                    Usuario login = new Usuario();
+                    login = Usuario.realizarLogin(arrayUsuarios);
+                    if (login != null){
+                        limparTela();
+						
+						int chave;
+						do {
+						chave = menuPrincipal(hotel,sc);
+						} while (chave != 4);
+                    }
+                    break;
+                default:
+                    limparTela();
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        } while (opcao != 0);
 	}
 
 	// Função que controla as funcionalidades do programa
