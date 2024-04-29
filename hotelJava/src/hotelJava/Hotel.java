@@ -13,7 +13,7 @@ public class Hotel {
 		this.nome = nome;
 		this.quartos = new Quarto[quantQuartos];
 		for (int i =0; i<quantQuartos; i++) {
-			quartos[i] = new Quarto(i,true,false);
+			quartos[i] = new Quarto(i,true);
 			
 		}
 	}
