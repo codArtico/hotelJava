@@ -1,11 +1,13 @@
 package hotelJava;
 
+import util.Data;
+
 public class Quarto {
-	int numQuarto;
+	private int numQuarto;
 	private boolean disponivel;
-	private boolean check;
+	private Data dataCheckIn;
+	private Data dataCheckOut;
 	
-	// Data[] datasAlugadas;
 	
 	public int getNumQuarto() {
 		return numQuarto;
@@ -20,21 +22,27 @@ public class Quarto {
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
-	public boolean isCheck() {
-		return check;
+	
+	public Data getDataCheckIn() {
+		return dataCheckIn;
 	}
-	public void setCheck(boolean check) {
-		this.check = check;
+	public void setDataCheckIn(Data dataCheckIn) {
+		this.dataCheckIn = dataCheckIn;
+	}
+	public Data getDataCheckOut() {
+		return dataCheckOut;
+	}
+	public void setDataCheckOut(Data dataCheckOut) {
+		this.dataCheckOut = dataCheckOut;
 	}
 	
 	public Quarto() {
 		
 	}
 	
-	public Quarto(int numQuarto, boolean disponivel, boolean check) {
+	public Quarto(int numQuarto, boolean disponivel) {
 		this.numQuarto = numQuarto;
 		this.disponivel = disponivel;
-		this.check = check;
 	}
 	
 	
