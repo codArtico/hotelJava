@@ -1,7 +1,5 @@
 package hotelJava;
 
-//import java.time.temporal.ChronoUnit;
-
 import util.Data;
 
 public class Hotel {
@@ -98,7 +96,7 @@ public class Hotel {
 				long diaria = Data.calcularDias(quartoSelecionado.getDataCheckIn(), quartoSelecionado.getDataCheckOut());
 				System.out.printf("Você ficou %d dias hospedado! %n" , diaria);
 				System.out.println("Quarto liberado!");
-				// System.out.printf("A sua despesa é de R$ %.2f! %n" , 20); //alterar o valor depois
+				System.out.printf("A sua despesa é de R$ %.2f! %n" , quartoSelecionado.getValorDiaria()* diaria); //alterar o valor depois
 				System.out.println("Volte sempre!");
 				System.out.println();
 			}

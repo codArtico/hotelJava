@@ -55,6 +55,8 @@ public class Aplicacao {
                     break;
             }
         } while (opcao != 0);
+        
+        input.close();
 	}
 
 	// Função que controla as funcionalidades do programa
