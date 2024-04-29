@@ -1,7 +1,7 @@
 package hotelJava;
 
 public class Quarto {
-	int numQuarto;
+	private int numQuarto;
 	private boolean disponivel;
 	private boolean check;
 	
