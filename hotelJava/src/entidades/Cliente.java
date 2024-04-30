@@ -86,6 +86,13 @@ public class Cliente extends Usuario{
 
     }
     
+    public static boolean verificarQuartoAlugado(Cliente login) {
+    	if (login.quartoAlugado!=null) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     @Override
     public String toString() {
     	

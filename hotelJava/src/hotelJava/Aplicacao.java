@@ -81,9 +81,14 @@ public class Aplicacao {
 			
 		case 2:
 		limparTela();
+		if(!Cliente.verificarQuartoAlugado(login)) {
 		System.out.println("Digite o número do quarto que deseja fazer Check-In: ");
 		int numCheckIn = sc.nextInt();
 		Hotel.checkIn(hotel, numCheckIn, login);
+		}
+		else {
+			System.out.println("Você ja possui um quarto alugado!");
+		}
 		break;
 			
 		case 3:

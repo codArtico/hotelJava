@@ -100,6 +100,7 @@ public class Hotel {
 				float valorTotal = quartoSelecionado.getValorDiaria() * diaria;
 
 				quartoSelecionado.setDisponivel(true); // Deixa o quarto disponível
+				cliente.setQuartoAlugado(null);
 				System.out.printf("Você ficou %d dias hospedado! %n" , diaria);
 				System.out.println("Quarto liberado!");
 				System.out.printf("A sua despesa é de R$ %.2f! %n" , valorTotal);
