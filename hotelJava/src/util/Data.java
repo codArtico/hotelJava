@@ -32,7 +32,6 @@ public class Data {
 	static Scanner sc = new Scanner(System.in);
 	public static Data coletarData() {
 		System.out.print("Digite a data no formato dd/mm/aaaa: ");
-
 		String dataInput = sc.nextLine();
 		
 		String[] partesData = dataInput.split("/");

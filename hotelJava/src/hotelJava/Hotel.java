@@ -1,5 +1,8 @@
 package hotelJava;
 
+import entidades.Cliente;
+import entidades.Usuario;
+
 //import java.time.temporal.ChronoUnit;
 
 import util.Data;
@@ -44,18 +47,12 @@ public class Hotel {
 	}
 
 	public void verificarDisponiveis() {
-		boolean chave = false;
-		for (int i = 0; i < quartos.length; i++) {
+		for (int i = quartos.length -1; i >= 0; i--) {
 			
 			if(quartos[i].isDisponivel()) {
-				chave = true;
-				System.out.print(" • " + quartos[i].getNumQuarto() + " • \n");
+				System.out.print(" • " + quartos[i].getNumQuarto() + " • Valor diária: R$ " + quartos[i].getValorDiaria() + "\n");
 			}
 			
-		}
-		
-		if (!chave) {
-			System.out.println("Não há quartos disponiveis neste hotel!");
 		}
 	}
 	
@@ -65,16 +62,19 @@ public class Hotel {
 		System.out.println(" ");
 	}
 
-	public static void checkIn(Hotel hotel, int numeroQuarto) {
+	public static void checkIn(Hotel hotel, int numeroQuarto, Cliente login) {
 		Quarto[] quartos = hotel.getQuartos();
 	
 		if (numeroQuarto >= 0 && numeroQuarto < quartos.length) {
 			Quarto quartoSelecionado = quartos[numeroQuarto];
+
 		
 			if (quartoSelecionado.isDisponivel()) {
+				System.out.printf("Você está alugando o quarto %d por R$ %.2f %n", quartoSelecionado.getNumQuarto(), quartoSelecionado.getValorDiaria());
 				quartoSelecionado.setDataCheckIn(Data.coletarData());
 				quartoSelecionado.setDisponivel(false);
 				System.out.println("Check-in Realizado!");
+				login.setQuartoAlugado(quartoSelecionado);
 			}
 		
 			else {
@@ -86,19 +86,24 @@ public class Hotel {
 		}	
 	}
 
-	public static void checkOut(Hotel hotel, int numeroQuarto) {
+	public static void checkOut(Hotel hotel, Cliente cliente) {
 		Quarto[] quartos = hotel.getQuartos();
-	
-		if (numeroQuarto >= 0 && numeroQuarto < quartos.length) {
-			Quarto quartoSelecionado = quartos[numeroQuarto];
+		Quarto quartoAlugado = cliente.getQuartoAlugado();
+		if(quartoAlugado == null){
+			System.out.println("Você não tem quartos alugados!");
+		}
+		else if (quartoAlugado.getNumQuarto() >= 0 && quartoAlugado.getNumQuarto() < quartos.length) {
+			Quarto quartoSelecionado = quartoAlugado;
 			
 			if (!quartoSelecionado.isDisponivel()) {
 				quartoSelecionado.setDataCheckOut(Data.coletarData());
-				quartoSelecionado.setDisponivel(true); // Deixa o quarto disponível
 				long diaria = Data.calcularDias(quartoSelecionado.getDataCheckIn(), quartoSelecionado.getDataCheckOut());
+				float valorTotal = quartoSelecionado.getValorDiaria() * diaria;
+
+				quartoSelecionado.setDisponivel(true); // Deixa o quarto disponível
 				System.out.printf("Você ficou %d dias hospedado! %n" , diaria);
 				System.out.println("Quarto liberado!");
-				// System.out.printf("A sua despesa é de R$ %.2f! %n" , 20); //alterar o valor depois
+				System.out.printf("A sua despesa é de R$ %.2f! %n" , valorTotal);
 				System.out.println("Volte sempre!");
 				System.out.println();
 			}

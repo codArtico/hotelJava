@@ -1,5 +1,6 @@
 package hotelJava;
 
+import java.util.Random;
 import util.Data;
 
 public class Quarto {
@@ -38,8 +39,8 @@ public class Quarto {
 		this.dataCheckOut = dataCheckOut;
 	}
 	
-	public int getValorDiaria() {
-		return numQuarto;
+	public float getValorDiaria() {
+		return valorDiaria;
 	}
 	public void setValorDiaria(float valorDiaria) {
 		this.valorDiaria = valorDiaria;
@@ -52,11 +53,15 @@ public class Quarto {
 	public Quarto(int numQuarto, boolean disponivel) {
 		this.numQuarto = numQuarto;
 		this.disponivel = disponivel;
+		this.valorDiaria = gerarValorDiariaAleatorio();
 	}
 	
-	public Quarto(int numQuarto, boolean disponivel, float valorDiaria){
-		this.numQuarto = numQuarto;
-		this.disponivel = disponivel;
-		this.valorDiaria = valorDiaria;
-	}
+	private float gerarValorDiariaAleatorio() {
+        Random rand = new Random();
+
+	  	int numeroInteiro = rand.nextInt(601) + 400; // Gera um número de 0 a 600 e soma 400
+	    float numeroComDuasCasasDecimais = (float) numeroInteiro / 100;
+
+		return numeroComDuasCasasDecimais;
+    }
 }
