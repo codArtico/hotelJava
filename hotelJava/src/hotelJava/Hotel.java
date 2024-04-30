@@ -2,8 +2,6 @@ package hotelJava;
 
 import entidades.Cliente;
 
-//import java.time.temporal.ChronoUnit;
-
 import util.Data;
 
 public class Hotel {
