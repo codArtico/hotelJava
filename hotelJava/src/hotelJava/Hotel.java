@@ -96,7 +96,7 @@ public class Hotel {
 			
 			if (!quartoSelecionado.isDisponivel()) {
 				quartoSelecionado.setDataCheckOut(Data.coletarData());
-				long diaria = Data.calcularDias(quartoSelecionado.getDataCheckIn(), quartoSelecionado.getDataCheckOut());
+				long diaria = Math.abs(Data.calcularDias(quartoSelecionado.getDataCheckIn(), quartoSelecionado.getDataCheckOut()));
 				float valorTotal = quartoSelecionado.getValorDiaria() * diaria;
 
 				quartoSelecionado.setDisponivel(true); // Deixa o quarto disponível

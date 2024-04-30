@@ -1,7 +1,6 @@
 package hotelJava;
 
 import java.util.Scanner;
-
 import entidades.Cliente;
 
 public class Aplicacao {
